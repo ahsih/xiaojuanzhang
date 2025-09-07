@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
-    <title>我们在一起的时间</title>
+    <title>重要日子的倒计时</title>
     <style>
         html,
         body {
@@ -20,44 +20,120 @@
 
         h1 {
             color: #c9184a;
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
-        .timer {
-            font-size: 22px;
-            color: #333;
+        .timers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .timer-card {
             background: white;
-            padding: 15px 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 220px;
+            transition: transform 0.3s;
+        }
+
+        .timer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-name {
+            font-size: 22px;
+            color: #c9184a;
+            margin-bottom: 10px;
+        }
+
+        .countdown {
+            font-size: 18px;
+            color: #333;
+            white-space: pre-line;
         }
     </style>
 </head>
 
 <body>
-    <h1>我们在一起的时间 ❤️</h1>
-    <div class="timer" id="timeCounter">加载中...</div>
+    <h1>重要日子的倒计时 ❤️</h1>
+    <div class="timers">
+        <div class="timer-card">
+            <div class="event-name">在一起的时间</div>
+            <div class="countdown" id="togetherTime">加载中...</div>
+        </div>
+        <div class="timer-card">
+            <div class="event-name">情人节</div>
+            <div class="countdown" id="valentine">加载中...</div>
+        </div>
+        <div class="timer-card">
+            <div class="event-name">520</div>
+            <div class="countdown" id="may20">加载中...</div>
+        </div>
+        <div class="timer-card">
+            <div class="event-name">中秋节</div>
+            <div class="countdown" id="midAutumn">加载中...</div>
+        </div>
+    </div>
 
     <script>
-        function updateCounter() {
-            const startDate = new Date("2025-07-27T00:00:00");
+        // Pre-calculated Mid-Autumn Festival dates
+        const midAutumnDates = {
+            2025: "2025-10-06",
+            2026: "2026-09-25",
+            2027: "2027-09-15"
+        };
 
+        function getNextDate(month, day) {
             const now = new Date();
+            let year = now.getFullYear();
+            const target = new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`);
+            if (target < now) year += 1;
+            return new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00`);
+        }
 
-            const diff = now - startDate;
+        function getNextMidAutumn() {
+            const now = new Date();
+            let year = now.getFullYear();
+            if (!midAutumnDates[year] || new Date(midAutumnDates[year]) < now) year += 1;
+            return new Date(midAutumnDates[year]);
+        }
 
+        function formatCountdown(target) {
+            const now = new Date();
+            const diff = target - now;
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / (1000 * 60)) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
-
-            document.getElementById("timeCounter").textContent =
-                `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+            return `${days} 天\n${hours} 小时\n${minutes} 分钟\n${seconds} 秒`;
         }
 
-        setInterval(updateCounter, 1000);
-        updateCounter(); 
+        function formatTotalTime(startDate) {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+            return `${days} 天\n${hours} 小时\n${minutes} 分钟\n${seconds} 秒`;
+        }
+
+        function updateCountdowns() {
+            const startTogether = new Date("2025-07-26T00:00:00");
+            document.getElementById("togetherTime").textContent = formatTotalTime(startTogether);
+            document.getElementById("valentine").textContent = formatCountdown(getNextDate(2, 14));
+            document.getElementById("may20").textContent = formatCountdown(getNextDate(5, 20));
+            document.getElementById("midAutumn").textContent = formatCountdown(getNextMidAutumn());
+        }
+
+        setInterval(updateCountdowns, 1000);
+        updateCountdowns();
     </script>
 </body>
 
