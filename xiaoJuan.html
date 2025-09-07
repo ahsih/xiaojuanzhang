@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>生日快乐我的小宝贝</title>
   <style>
-    html, body {
+    html,
+    body {
       margin: 0;
       height: 100%;
       width: 100%;
@@ -13,17 +15,20 @@
       justify-content: center;
       align-items: center;
     }
+
     svg {
       width: 100%;
       height: 100%;
     }
+
     .heart {
       stroke: #c9184a;
       stroke-width: 2;
       animation: beat 1.5s infinite ease-in-out,
-                 colorchange 4s infinite alternate;
+        colorchange 4s infinite alternate;
       transform-origin: 50% 50%;
     }
+
     text {
       font-family: "Segoe Script", cursive;
       font-size: 5px;
@@ -35,20 +40,61 @@
 
     /* Heartbeat animation */
     @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      25%      { transform: scale(1.05); }
-      50%      { transform: scale(0.95); }
-      75%      { transform: scale(1.05); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      25% {
+        transform: scale(1.05);
+      }
+
+      50% {
+        transform: scale(0.95);
+      }
+
+      75% {
+        transform: scale(1.05);
+      }
     }
 
     /* Smooth color animation */
     @keyframes colorchange {
-      0%   { fill: #ff8fa3; }
-      50%  { fill: #ff4d6d; }
-      100% { fill: #c9184a; }
+      0% {
+        fill: #ff8fa3;
+      }
+
+      50% {
+        fill: #ff4d6d;
+      }
+
+      100% {
+        fill: #c9184a;
+      }
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    .floating-btn:hover {
+      background: #c9184a;
     }
   </style>
 </head>
+
 <body>
   <svg viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet">
     <!-- Animated heart -->
@@ -57,13 +103,16 @@
       C 20 60, 0 40, 20 20
       C 35 5, 50 15, 50 25
       C 50 15, 65 5, 80 20
-      C 100 40, 80 60, 50 80 Z"/>
-    
+      C 100 40, 80 60, 50 80 Z" />
+
     <!-- Text inside -->
     <text x="50" y="40">Happy Birthday Jenny❤️</text>
-	<text x="50" y="45">祝你每一天都变得美美的</text>
-	<text x="50" y="50">来哥哥那里拿你的小礼物</text>
+    <text x="50" y="45">祝你每一天都变得美美的</text>
+    <text x="50" y="50">来哥哥那里拿你的小礼物</text>
   </svg>
+  <button class="floating-btn" onclick="location.href='ourTime.html'">
+    来看看我们在一起多少天了
+  </button>
 </body>
-</html>
 
+</html>
