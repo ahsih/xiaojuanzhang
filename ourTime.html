@@ -64,7 +64,11 @@
     <h1>重要日子的倒计时 ❤️</h1>
     <div class="timers">
         <div class="timer-card">
-            <div class="event-name">在一起的时间</div>
+            <div class="event-name">认识时间</div>
+            <div class="countdown" id="meetTime">加载中...</div>
+        </div>
+        <div class="timer-card">
+            <div class="event-name">爱的累计</div>
             <div class="countdown" id="togetherTime">加载中...</div>
         </div>
         <div class="timer-card">
@@ -76,7 +80,7 @@
             <div class="countdown" id="may20">加载中...</div>
         </div>
         <div class="timer-card">
-            <div class="event-name">中秋节</div>
+            <div class="event-name">中秋节（小宝贝生日节日）</div>
             <div class="countdown" id="midAutumn">加载中...</div>
         </div>
     </div>
@@ -126,7 +130,9 @@
 
         function updateCountdowns() {
             const startTogether = new Date("2025-07-26T00:00:00");
+            const meetTogether = new Date("2025-07-11T00:00:00");
             document.getElementById("togetherTime").textContent = formatTotalTime(startTogether);
+            document.getElementById("meetTime").textContent = formatTotalTime(meetTogether);
             document.getElementById("valentine").textContent = formatCountdown(getNextDate(2, 14));
             document.getElementById("may20").textContent = formatCountdown(getNextDate(5, 20));
             document.getElementById("midAutumn").textContent = formatCountdown(getNextMidAutumn());
