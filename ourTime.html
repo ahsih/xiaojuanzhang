@@ -83,6 +83,10 @@
             <div class="event-name">小宝贝生日（中秋节）</div>
             <div class="countdown" id="midAutumn">加载中...</div>
         </div>
+        <div class="timer-card">
+            <div class="event-name">大宝贝生日</div>
+            <div class="countdown" id="myBirthdayTime">加载中...</div>
+        </div>
     </div>
 
     <script>
@@ -92,6 +96,7 @@
             2026: "2026-09-25",
             2027: "2027-09-15"
         };
+
 
         function getNextDate(month, day) {
             const now = new Date();
@@ -135,6 +140,7 @@
             document.getElementById("meetTime").textContent = formatTotalTime(meetTogether);
             document.getElementById("valentine").textContent = formatCountdown(getNextDate(2, 14));
             document.getElementById("may20").textContent = formatCountdown(getNextDate(5, 20));
+            document.getElementById("myBirthdayTime").textContent = formatCountdown(getNextDate(10,26));
             document.getElementById("midAutumn").textContent = formatCountdown(getNextMidAutumn());
         }
 
