@@ -64,7 +64,7 @@
     <h1>重要日子的倒计时 ❤️</h1>
     <div class="timers">
         <div class="timer-card">
-            <div class="event-name">相识至今</div>
+            <div class="event-name">初遇至今</div>
             <div class="countdown" id="meetTime">加载中...</div>
         </div>
         <div class="timer-card">
@@ -76,7 +76,7 @@
             <div class="countdown" id="valentine">加载中...</div>
         </div>
         <div class="timer-card">
-            <div class="event-name">520</div>
+            <div class="event-name">爱你日</div>
             <div class="countdown" id="may20">加载中...</div>
         </div>
         <div class="timer-card">
@@ -120,7 +120,7 @@
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / (1000 * 60)) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
-            return `${days} 天\n${hours} 小时\n${minutes} 分钟\n${seconds} 秒`;
+            return `下一次：${days} 天\n${hours} 小时\n${minutes} 分钟\n${seconds} 秒`;
         }
 
         function formatTotalTime(startDate) {
