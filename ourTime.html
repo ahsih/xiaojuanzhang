@@ -57,6 +57,11 @@
             color: #333;
             white-space: pre-line;
         }
+
+        .bold-countdown {
+            font-size: 26px;
+            color: #c9184a;
+        }
     </style>
 </head>
 
@@ -65,26 +70,32 @@
     <div class="timers">
         <div class="timer-card">
             <div class="event-name">初遇至今 🌸</div>
+            <div class="bold-countdown">2025-07-11</div>
             <div class="countdown" id="meetTime">加载中...</div>
         </div>
         <div class="timer-card">
             <div class="event-name">爱的累计 ❤️ → ❤️</div>
+            <div class="bold-countdown">2025-07-26</div>
             <div class="countdown" id="togetherTime">加载中...</div>
         </div>
         <div class="timer-card">
             <div class="event-name">小宝贝生日（中秋节） 🎂 + 🌕</div>
+            <div class="bold-countdown" id="babeBirth">2025-07-26</div>
             <div class="countdown" id="midAutumn">加载中...</div>
         </div>
         <div class="timer-card">
             <div class="event-name">大宝贝生日 🎂</div>
+            <div class="bold-countdown" id="myBirth">1995-10-26</div>
             <div class="countdown" id="myBirthdayTime">加载中...</div>
         </div>
         <div class="timer-card">
             <div class="event-name">情人节 💌</div>
+            <div class="bold-countdown">02-14</div>
             <div class="countdown" id="valentine">加载中...</div>
         </div>
         <div class="timer-card">
             <div class="event-name">爱你日 💕</div>
+            <div class="bold-countdown">05-20</div>
             <div class="countdown" id="may20">加载中...</div>
         </div>
     </div>
@@ -111,6 +122,11 @@
             let year = now.getFullYear();
             if (!midAutumnDates[year] || new Date(midAutumnDates[year]) < now) year += 1;
             return new Date(midAutumnDates[year]);
+        }
+
+        function formatDate(){
+            const date = getNextMidAutumn();
+            return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} `;
         }
 
         function formatCountdown(target) {
@@ -140,7 +156,8 @@
             document.getElementById("meetTime").textContent = formatTotalTime(meetTogether);
             document.getElementById("valentine").textContent = formatCountdown(getNextDate(2, 14));
             document.getElementById("may20").textContent = formatCountdown(getNextDate(5, 20));
-            document.getElementById("myBirthdayTime").textContent = formatCountdown(getNextDate(10,26));
+            document.getElementById("myBirthdayTime").textContent = formatCountdown(getNextDate(10, 26));
+            document.getElementById("babeBirth").textContent = formatDate();
             document.getElementById("midAutumn").textContent = formatCountdown(getNextMidAutumn());
         }
 
