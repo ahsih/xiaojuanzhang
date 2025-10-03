@@ -112,6 +112,13 @@
         2026: "2026-09-25",
         2027: "2027-09-15",
       };
+
+      function formatDate() {
+        const currentYear = new Date().getFullYear();
+        const midAutumnThisYear = midAutumnDates[currentYear];
+        return midAutumnThisYear;
+      }
+
       function getNextDate(month, day) {
         const now = new Date();
         let year = now.getFullYear();
@@ -136,11 +143,6 @@
         if (!midAutumnDates[year] || new Date(midAutumnDates[year]) < now)
           year += 1;
         return new Date(midAutumnDates[year]);
-      }
-
-      function formatDate() {
-        const date = getNextMidAutumn();
-        return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} `;
       }
 
       function formatCountdown(target) {
