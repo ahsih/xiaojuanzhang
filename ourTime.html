@@ -114,8 +114,16 @@
       };
 
       function formatDate() {
-        const currentYear = new Date().getFullYear();
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
         const midAutumnThisYear = midAutumnDates[currentYear];
+
+        // If the date for this year has already passed, use next year's date
+        if (new Date(midAutumnThisYear) < currentDate) {
+          const nextYear = currentYear + 1;
+          return midAutumnDates[nextYear];
+        }
+
         return midAutumnThisYear;
       }
 
